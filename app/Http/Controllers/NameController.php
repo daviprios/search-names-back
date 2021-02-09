@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\NameModel;
-
 class NameController extends Controller
 {
     public function getNames(Request $request){
@@ -20,7 +18,7 @@ class NameController extends Controller
             $names = $this->_getAlikeNames($name);
         }
 
-        return response()->json(['names' => $names], 200);
+        return response()->json(['code' => 'success', 'message' => 'Searched', 'names' => $names], 200);
     }
     
     function _getAllNames(){
@@ -43,9 +41,9 @@ class NameController extends Controller
         $nameCreated = DB::table('name_table')->insert(['name' => $name]);
 
         if(!$nameCreated)
-            return response()->json(['error' => 'Name not created'], 500);
+            return response()->json(['code' => 'error', 'message' => 'Name not created'], 500);
 
-        return response()->json(['message' => 'Created', 'name' => $nameCreated], 200);
+        return response()->json(['code' => 'success', 'message' => 'Created'], 200);
     }
 
     public function updateName(Request $request){
@@ -60,9 +58,9 @@ class NameController extends Controller
         $nameUpdated = DB::table('name_table')->where('id', '=', $code)->limit(1)->update(['name' => $name]);
 
         if(!$nameUpdated)
-            return response()->json(['error' => 'Name not updated'], 500);
+            return response()->json(['code' => 'error', 'message' => 'Name not updated'], 500);
 
-        return response()->json(['message' => 'Updated', 'name' => $nameUpdated], 200);
+        return response()->json(['code' => 'success', 'message' => 'Updated'], 200);
     }
 
     public function deleteName(Request $request){
@@ -75,8 +73,8 @@ class NameController extends Controller
         $nameDeleted = DB::table('name_table')->where('id', '=', $code)->limit(1)->delete();
 
         if(!$nameDeleted)
-            return response()->json(['error' => 'Name not deleted'], 500);
+            return response()->json(['code' => 'error', 'message' =>'Name not deleted'], 500);
 
-        return response()->json(['message' => 'Deleted', 'name' => $nameDeleted], 200);
+        return response()->json(['code' => 'success', 'message' => 'Deleted'], 200);
     }
 }
