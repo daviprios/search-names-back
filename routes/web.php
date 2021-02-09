@@ -15,7 +15,7 @@
 
 use App\Http\Controllers\NameController;
 
-$router->get('/show', 'NameController@getNames');
+$router->put('/show', 'NameController@getNames');
 $router->post('/create', 'NameController@createName');
 $router->patch('/update', 'NameController@updateName');
 $router->put('/delete', 'NameController@deleteName');
