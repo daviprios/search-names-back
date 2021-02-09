@@ -38,7 +38,7 @@ class NameController extends Controller
 
         $name = $request->input('name');
 
-        $nameCreated = DB::table('name_table')->insert(['name' => $name]);
+        $nameCreated = DB::table('name_table')->insert(['name' => $name, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
 
         if(!$nameCreated)
             return response()->json(['code' => 'error', 'message' => 'Name not created'], 500);
@@ -55,7 +55,7 @@ class NameController extends Controller
         $name = $request->input('name');
         $code = $request->input('code');
 
-        $nameUpdated = DB::table('name_table')->where('id', '=', $code)->limit(1)->update(['name' => $name]);
+        $nameUpdated = DB::table('name_table')->where('id', '=', $code)->limit(1)->update(['name' => $name, 'updated_at' => date('Y-m-d H:i:s')]);
 
         if(!$nameUpdated)
             return response()->json(['code' => 'error', 'message' => 'Name not updated'], 500);
