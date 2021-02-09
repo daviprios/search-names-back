@@ -8,7 +8,7 @@ class CorsMiddleware{
   public function handle($request, Closure $next){
     $headers = [
       'Access-Control-Allow-Origin'       => '*',
-      'Access-Control-Allow-Methods'      => 'POST, PATCH, GET, DELETE, OPTIONS',
+      'Access-Control-Allow-Methods'      => 'POST, PATCH, GET, DELETE, OPTIONS, PUT',
       'Access-Control-Allow-Credentials'  => 'true',
       'Access-Control-Allow-Headers'      => 'Content-Type, Authorization, X-Requested-With'
     ];

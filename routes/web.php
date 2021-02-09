@@ -18,4 +18,4 @@ use App\Http\Controllers\NameController;
 $router->get('/show', 'NameController@getNames');
 $router->post('/create', 'NameController@createName');
 $router->patch('/update', 'NameController@updateName');
-$router->delete('/delete', 'NameController@deleteName');
+$router->put('/delete', 'NameController@deleteName');
